@@ -1,0 +1,34 @@
+﻿@model Message
+@{
+	ViewData["Title"] = "Detail";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<a asp-area="Admin" asp-controller="Message" asp-action="Index" class="btn btn-dark mb-3">&lt- Mesajlara Dön</a>
+
+<div class="container mt-5">
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">
+					<h4><span class="text-secondary">Konu:</span> @Model.Title</h4>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<h5><span class="text-secondary">Gönderen Kişi:</span> @Model.FullName</h5>
+					<hr />
+					<h6><span class="text-secondary">Gönderen E-Posta:</span> @Model.EMail</h6>
+				</td>
+			</tr>
+			<tr>
+				<td scope="row">
+					<p class="text-break">
+						@Model.MessageContent
+					</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Üstün Ticaret Admin Panel</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<!-- Custom styles -->
+	<style>
+		/* Sidebar styles */
+		.sidebar {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			width: 250px;
+			z-index: 100; /* Above the content */
+			background-color: black;
+			padding: 48px 0 0; /* Top padding to compensate for navbar height */
+			color: #fff;
+			overflow-y: auto;
+		}
+
+		.sidebar-heading {
+			/* padding: 10px 15px; */
+			margin: 0 20%;
+			font-size: 1.2rem;
+		}
+
+		.nav-link {
+			color: #fff;
+			padding-left: 20%;
+			transition: color 0.3s ease;
+		}
+
+			.nav-link:hover {
+				color: red;
+			}
+
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class="col-2">
+				<div class="sidebar">
+					<h3 class="sidebar-heading">Üstün Ticaret</h3>
+					<hr />
+					<ul class="nav flex-column">
+						<li class="nav-item">
+							<a class="nav-link" href="/admin/category/index">Kategoriler</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/admin/brand/index">Markalar</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/admin/product/index">Ürünler</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/admin/dealership/index">Ortaklar</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/admin/topline/iletisim">İletişim</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/admin/socialmedia/index">Medya</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/admin/gallery/index">Galeri</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/admin/message/index">Mesaj</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/admin/about/index">Hakkımda</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/admin/logo/index">Logo</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/admin/account/index">Şifre</a>
+						</li>
+
+
+					</ul>
+				</div>
+			</div>
+			<div class="col-10">
+				<div class="container" style="margin-top: 5rem; margin-bottom:5rem;">
+					@RenderBody()
+				</div>
+			</div>
+		</div>
+	</div>
+	@RenderSection("Scripts", required: false)
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

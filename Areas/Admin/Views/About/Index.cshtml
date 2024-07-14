@@ -1,0 +1,31 @@
+﻿@model About
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-5">
+	<h2>Hakkımda Bilgileri</h2>
+	<hr />
+	<form asp-area="Admin" asp-controller="About" asp-action="Index" method="post">
+		<input type="hidden" asp-for="AboutId" />
+		<div class="form-group mb-3">
+			<label class="form-label" asp-for="Title">Hakkımda Başlığı</label>
+			<input type="text" class="form-control" asp-for="Title" placeholder="Hakkımda başlığı...">
+		</div>
+		<div class="form-group mb-3">
+			<label class="form-label" asp-for="Description">Hakkımda Açıklaması</label>
+			<textarea type="text" class="form-control" asp-for="Description" placeholder="Hakkımda açıklaması..." rows="10"></textarea>
+		</div>
+		<div class="form-group mb-3">
+			<button type="submit" class="btn btn-dark">Kaydet</button>
+		</div>
+	</form>
+</div>
+@section Scripts {
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.2.0/tinymce.min.js" integrity="sha512-E2dqytT185qVoAL0sfqr39BLHEBQtmZze59ChMjYi4vRUW6BzIBLZAqErdQAAAJX8bkFq2kQgQL9Lbpm8Uuw0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script>
+		tinymce.init({
+		selector: '#Description'
+		});
+	</script>
+}

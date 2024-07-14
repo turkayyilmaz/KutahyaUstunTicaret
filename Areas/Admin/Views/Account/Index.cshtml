@@ -1,0 +1,26 @@
+﻿@using KutahyaUstunTicaret.Areas.Admin.Models
+@model Login
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-5">
+	<h2>Admin Panel Giriş Değişikliği</h2>
+	<hr />
+	<form asp-area="Admin" asp-controller="Account" asp-action="Index" method="post">
+		<input type="hidden" asp-for="LoginId" />
+		<div class="form-group mb-3">
+			<label class="form-label" asp-for="Username">Kullanıcı Adı</label>
+			<input type="text" class="form-control" asp-for="Username" placeholder="Kullanıcı adı...">
+			<span asp-validation-for="Username" class="text-danger"></span>
+		</div>
+		<div class="form-group mb-3">
+			<label class="form-label" asp-for="Password">Şifre</label>
+			<input type="text" asp-for="Password"  class="form-control" />
+			<span asp-validation-for="Password" class="text-danger"></span>
+		</div>
+		<div class="form-group mb-3">
+			<button type="submit" class="btn btn-dark">Kaydet</button>
+		</div>
+	</form>
+</div>

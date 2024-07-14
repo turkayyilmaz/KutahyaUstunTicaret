@@ -1,0 +1,24 @@
+﻿@model List<Dealership>
+
+<div class="section-title">
+	<h3 class="title">ORTAKLARIMIZ</h3>
+	<div class="section-nav">
+	</div>
+</div>
+<div id="" class="" style="background: repeating-linear-gradient(90deg, rgba(21, 22, 29),rgba(209, 0, 36),rgba(21, 22, 29)); background-position: center; background-repeat: no-repeat;">
+	<!-- container -->
+	<div class="container" style="padding: 20px;">
+		<!-- row -->
+		<div class="row g-1" style="padding: 10px;">
+			@foreach (var item in Model)
+			{
+				<div class="col-md-2 p-5">
+					<a href="@item.Web" target="_blank">
+						<img src="~/Img/Dealer/@item.Image" width="100px" height="100px" />
+						<p style="font-size:15px; color:white;">@item.DealershipName</p>
+					</a>
+				</div>
+			}
+		</div>
+	</div>
+</div>

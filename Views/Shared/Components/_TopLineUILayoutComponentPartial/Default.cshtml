@@ -1,0 +1,17 @@
+﻿	<div id="top-header">
+		<div class="container">
+			<ul class="header-links pull-left">
+			<li><a href="tel:@ViewBag.TopLines.Phone" target="_blank"><i class="fa fa-phone"></i>@ViewBag.TopLines.Phone</a></li>
+			<li><a href="mailto:@ViewBag.TopLines.EMail" target="_blank"><i class="fa fa-envelope-o"></i>@ViewBag.TopLines.EMail</a></li>
+			<li><a href="@ViewBag.TopLines.GoogleMaps" target="_blank"><i class="fa fa-map-marker"></i>@ViewBag.TopLines.Address</a></li>
+			</ul>
+			<ul class="header-links pull-right">
+			@foreach (var item in ViewBag.SocialMedias)
+			{
+				<li><a href="@item.Link" target="_blank"><i class="@item.IconName"></i></a></li>
+			}
+				
+			</ul>
+		</div>
+	</div>
+	

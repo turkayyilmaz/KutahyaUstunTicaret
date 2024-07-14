@@ -1,0 +1,156 @@
+﻿@model ProductListViewModel
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+	int count = 0;
+}
+<div class="container mt-5">
+	<h2>Ürünler</h2>
+	<hr />
+	<a asp-area="Admin" asp-controller="Product" asp-action="Create" class="btn btn-dark mb-3">Yeni Ürün Ekle</a>
+	<div class="card card-body my-3">
+		<form asp-area="Admin" asp-controller="Product" asp-action="Index" method="get">
+			<div class="container">
+				<select name="category"
+						class="form-control"
+						asp-items='@(new SelectList(@ViewBag.Categories, "CategoryName", "CategoryName", @ViewBag.SelectedCategory))'>
+					<option value="0">Kategori Seç</option>
+				</select>
+				<div class="mb-1">
+				</div>
+				<select name="brand"
+						class="form-control"
+						asp-items='@(new SelectList(@ViewBag.Brands, "BrandName", "BrandName", @ViewBag.SelectedBrand))'>
+					<option value="0">Marka Seç</option>
+				</select>
+				<div class="mb-1">
+				</div>
+				<input type="search" name="search" class="form-control" value="@ViewBag.Search" placeholder="Ürün ara" />
+				<div class="mb-1">
+				</div>
+				<button type="submit" class="btn btn-sm btn-dark">Filtrele</button>
+			</div>
+		</form>
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Ürün Resmi</th>
+				<th scope="col">Ürün Adı</th>
+				<th scope="col">Ürün Açıklaması</th>
+				@* <th scope="col">Fiyat</th> *@
+				@* <th scope="col">KDV</th> *@
+				<th scope="col">Birim</th>
+				<th scope="col">Stok</th>
+				<th scope="col">Marka</th>
+				<th scope="col">Kategori</th>
+				<th scope="col">Güncelle</th>
+				<th scope="col">Sil</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model.Products)
+			{
+				count++;
+				<tr>
+					<th scope="row">@count</th>
+					<td><img src="~/Img/Products/@item.image" width="100px" /></td>
+					@{
+						string Name = item.productName.Length > 15 ? item.productName.Substring(0, 15) + "..." :
+						item.productName;
+					}
+					<td>@Name</td>
+					<td>@item.description</td>
+					@* <td>@item.Price</td> *@
+					@* <td>@item.Kdv</td> *@
+					<td>
+						@if (string.IsNullOrEmpty(item.unit))
+						{
+							<span></span>
+						}
+						else
+						{
+							<span>@item.unit.ToUpper()</span>
+						}
+					</td>
+					<td>
+						@if (item.stock == true)
+						{
+							<span>VAR</span>
+						}
+						else
+						{
+							<span>YOK</span>
+						}
+					</td>
+					<td>@item.brand</td>
+					<td>@item.category</td>
+					<td><a class="btn btn-dark" asp-area="Admin" asp-controller="Product" asp-action="Edit" asp-route-id="@item.productId">Güncelle</a></td>
+					<td><a class="btn btn-danger" asp-area="Admin" asp-controller="Product" asp-action="Delete" asp-route-id="@item.productId">Sil</a></td>
+				</tr>
+			}
+
+		</tbody>
+	</table>
+	@if (Model.Products.Count() == 0)
+	{
+		<div class="alert alert-light" role="alert">
+			Herhangi bir ürün bulunamadı.
+		</div>
+	}
+	<nav aria-label="Page navigation example">
+		@if (Model.PageInfo.TotalPages > 1)
+		{
+			<ul class="pagination">
+				@if (Model.PageInfo.CurrentPage > 1)
+				{
+					<li class="page-item">
+						<a class="page-link text-dark"
+						   asp-area="admin"
+						   asp-controller="product"
+						   asp-action="index"
+						   asp-route-page="@(Model.PageInfo.CurrentPage - 1)"
+						   asp-route-category="@(ViewData["Category"])"
+						   asp-route-brand="@(ViewData["Brand"])"
+						   asp-route-search="@ViewBag.Search"
+						   aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+				}
+				@for (var i = 1; i <= Model.PageInfo.TotalPages; i++)
+				{
+					<li class="page-item">
+						<a class="page-link"
+						   asp-area="admin"
+						   asp-controller="product"
+						   asp-action="index"
+						   asp-route-page="@i"
+						   asp-route-category="@(ViewData["Category"])"
+						   asp-route-brand="@(ViewData["Brand"])"
+						   asp-route-search="@ViewBag.Search">
+							@i
+						</a>
+					</li>
+				}
+				@if (Model.PageInfo.CurrentPage < Model.PageInfo.TotalPages)
+				{
+					<li class="page-item">
+						<a 
+							class="page-link text-dark" 
+							asp-area="admin" 
+							asp-controller="product" 
+							asp-action="index"
+							asp-route-page="@(Model.PageInfo.CurrentPage + 1)" 
+							asp-route-category="@(ViewData["Category"])" 
+							asp-route-brand="@(ViewData["Brand"])" 
+							asp-route-search="@ViewBag.Search" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				}
+			</ul>
+		}
+	</nav>
+</div>

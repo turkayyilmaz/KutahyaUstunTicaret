@@ -1,0 +1,45 @@
+﻿@model TopLine
+@{
+	ViewData["Title"] = "Iletisim";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-5">
+
+	<h2>İletişim Bilgileri</h2>
+	<hr />
+	<form asp-area="Admin" asp-controller="TopLine" asp-action="Iletisim" method="post">
+		<input type="hidden" asp-for="TopLineId" />
+		<div class="form-group mb-3">
+			<label class="form-label" asp-for="Phone">Şirket Telefonu</label>
+			<input type="text" class="form-control" asp-for="Phone" placeholder="Şirket telefonu...">
+		</div>
+		<div class="form-group mb-3">
+			<label class="form-label" asp-for="EMail">E-Posta</label>
+			<input type="email" class="form-control" asp-for="EMail" placeholder="Şirket maili...">
+		</div>
+		<div class="form-group mb-3">
+			<label class="form-label" asp-for="Address">Şirket Adresi</label>
+			<input type="text" class="form-control" asp-for="Address" placeholder="Şirket adresi...">
+		</div>
+		<div class="form-group mb-3">
+			<label class="form-label" asp-for="Whatsapp">WhatsApp hattı, Örnek: +9055000000</label>
+			<input type="text" class="form-control" asp-for="Whatsapp" placeholder="Şirket whatsapp...">
+		</div>
+		<div class="form-group mb-3">
+			<label class="form-label" asp-for="GoogleMaps">Şirket Google Maps Adresi</label>
+			<input type="text" class="form-control" asp-for="GoogleMaps" placeholder="Şirket Google Maps Adresi...">
+		</div>
+		<div class="form-group mb-3">
+			<label class="form-label" asp-for="AboutFooter">Footer Alanındaki Hakkımızda Yazsısı</label>
+			<input type="text" class="form-control" asp-for="AboutFooter" placeholder="Şirket hakkımızda...">
+		</div>
+		<div class="form-group mb-3">
+			<label class="form-label" asp-for="MapsFooter">Footer Alanındaki Google Maps Linki: HTML Kodun src="x" kısmındaki x linki alınacak</label>
+			<input type="text" class="form-control" asp-for="MapsFooter" placeholder="Şirket footer google maps...">
+		</div>
+		<div class="form-group mb-3">
+			<button type="submit" class="btn btn-dark">Kaydet</button>
+		</div>
+	</form>
+
+</div>

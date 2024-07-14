@@ -1,0 +1,41 @@
+﻿@model List<SocialMedia>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+	int count = 0;
+}
+<div class="container mt-5">
+	<h2>Sosyal Medya Hesapları ve İkonları</h2>
+	<hr />
+	<a asp-area="admin" asp-controller="socialmedia" asp-action="create" class="btn btn-dark mb-3">Yeni Sosyal Medya Hesabı Ekle</a>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Ad</th>
+				<th scope="col">Soyad</th>
+				<th scope="col">Yaş</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				count++;
+				<tr>
+					<th scope="row">@count</th>
+					@{
+						string Link = item.Link.Length > 15 ? item.Link.Substring(0, 15) + "..." :
+						item.Link;
+					}
+					<td>@Link</td>
+					<td>@item.IconName</td>
+					<td><a class="btn btn-dark" asp-area="admin" asp-controller="socialmedia" asp-action="edit" asp-route-id="@item.SocialMediaId">Güncelle</a></td>
+					<td><a class="btn btn-danger" asp-area="admin" asp-controller="socialmedia" asp-action="delete" asp-route-id="@item.SocialMediaId">Sil</a></td>
+				</tr>
+			}
+
+		</tbody>
+	</table>
+</div>
+
+

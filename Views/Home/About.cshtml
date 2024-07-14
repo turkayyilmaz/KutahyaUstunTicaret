@@ -1,0 +1,11 @@
+﻿@model About
+@{
+	ViewData["Title"] = "About";
+	Layout = "~/Views/UILayout/UILayout.cshtml";
+}
+<div class="container mt-5 mb-5">
+
+	<h2 class="text-center">@Model.Title</h2>
+	<hr />
+	<p class="text-center" style="word-break: break-all; font-size:15px;">@Html.Raw(@Model.Description)</p>
+</div>

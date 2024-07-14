@@ -1,0 +1,43 @@
+﻿<div id="header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="header-logo">
+					<a href="/home" class="logo">
+						<img src="~/Img/Logo/@ViewBag.Logo.Image" width="300px" height="100%" style="align-items:center" alt="">
+					</a>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="header-search">
+					<form asp-controller="Home" asp-action="Product" method="get">
+						<div style="display: flex; justify-content: center;">
+							<input id="input" class="input" name="search" value="@ViewBag.Search" placeholder="Ürün ara" style="border-radius: 40px 0px 0px 40px;; ">
+							<button class="search-btn" type="submit" style="height:40px;">Ara</button>
+						</div>
+					</form>
+
+				</div>
+			</div>
+			<div class="col-md-3 ">
+				<div class="header-ctn">
+					<div id="whatsapp-btn">
+						<a href="https://wa.me/@ViewBag.TopLines.Whatsapp" target="_blank" class="btn">
+							<span class="whatsapp-icon" style="font-size:15px"><i class="fa fa-whatsapp"></i></span>
+							<span class="whatsapp-text" style="font-size:15px">WhatsApp İletişim Hattı</span>
+						</a>
+					</div>
+
+					<div class="menu-toggle" id="menu-toggle">
+						<a href="#" style="display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;">
+							<i class="fa fa-bars"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

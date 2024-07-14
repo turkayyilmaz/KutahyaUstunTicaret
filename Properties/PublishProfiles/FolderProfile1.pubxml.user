@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\ASUS\Desktop\Yeni klasör</_PublishTargetUrl>
+    <History>True|2024-07-02T21:50:18.0847343Z;</History>
+    <LastFailureDetails />
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="Default">
+      <Value>Data Source = 77.245.159.27\MSSQLSERVER2019%3b database = KutahyaUstunTicaretDb%3b user = zattirizotto%3b password: %24qbTs2073%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

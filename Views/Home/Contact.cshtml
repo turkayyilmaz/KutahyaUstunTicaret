@@ -1,0 +1,69 @@
+﻿@model Message
+@{
+	ViewData["Title"] = "Contact";
+	Layout = "~/Views/UILayout/UILayout.cshtml";
+}
+<h2>İletişim</h2>
+<hr />
+@if (TempData["Basarili"] != null)
+{
+	<div class="alert alert-success" role="alert">
+		@TempData["Basarili"]
+	</div>
+}
+<div class="row">
+	<div class="col-md-6">
+		<form asp-controller="Home" asp-action="Contact" method="post">
+			@* <input type="hidden" asp-for="MessageId" /> *@
+			@* <input type="hidden" asp-for="IsRead" value="false" / *@
+			<div class="form-group mb-3">
+				<label class="form-label" asp-for="FullName">Ad ve Soyad</label>
+				<input type="text" class="form-control" asp-for="FullName" placeholder="Adınız ve soyadınız...">
+				<span asp-validation-for="FullName" class="text-danger"></span>
+			</div>
+			<div class="form-group mb-3">
+				<label class="form-label" asp-for="EMail">E-Posta</label>
+				<input type="email" class="form-control" asp-for="EMail" placeholder="E-Posta adresiniz...">
+				<span asp-validation-for="EMail" class="text-danger"></span>
+			</div>
+			<div class="form-group mb-3">
+				<label class="form-label" asp-for="Title">Konu Başlığı</label>
+				<input type="text" class="form-control" asp-for="Title" placeholder="Konu başlığı...">
+				<span asp-validation-for="Title" class="text-danger"></span>
+			</div>
+			<div class="form-group mb-3">
+				<label class="form-label" asp-for="MessageContent">Mesaj</label>
+				<textarea type="text" class="form-control" asp-for="MessageContent" placeholder="Mesajınız..." rows="5"></textarea>
+				<span asp-validation-for="MessageContent" class="text-danger"></span>
+			</div>
+			<div class="form-group mb-3">
+				<button type="submit" class="btn btn-danger">Gönder</button>
+			</div>
+		</form>
+	</div>
+	<div class="col-md-6">
+		<label class="text-secondary">
+			<i class="fa fa-phone text-danger"></i>
+			<span style="padding-left:10px;">@ViewBag.v.Phone</span>
+		</label>
+		<br />
+		<label class="text-secondary">
+			<i class="fa fa-envelope text-danger"></i>
+			<span style="padding-left:10px;">@ViewBag.v.EMail</span>
+		</label>
+		<br />
+		<label class="text-secondary">
+			<i class="fa fa-map-marker text-danger"></i>
+			<span style="padding-left:10px;">@ViewBag.v.Address</span>
+		</label>
+		<hr />
+		@foreach(var item in ViewBag.s)
+		{
+			<label class="text-secondary">
+				<a href="@item.Link" target="_blank" class="btn" style="border-color:#d9534f;"><i class="@item.IconName text-danger" style="width:10px;"></i></a>
+			</label>
+		}
+		
+		<br />
+	</div>
+</div>

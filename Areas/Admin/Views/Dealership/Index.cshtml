@@ -1,0 +1,39 @@
+﻿@model List<Dealership>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+	int count = 0;
+}
+
+<div class="container mt-5">
+	<h2>Ortaklar</h2>
+	<hr />
+	<a asp-area="Admin" asp-controller="Dealership" asp-action="Create" class="btn btn-dark mb-3">Yeni Ortak Ekle</a>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Ortak Firma Adı</th>
+				<th scope="col">Firma Web Sitesi</th>
+				<th scope="col">Firma Logo</th>
+				<th scope="col">Güncelle</th>
+				<th scope="col">Sil</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				count++;
+				<tr>
+					<th scope="row">@count</th>
+					<td><img src="~/Img/Dealer/@item.Image" width="100px" /></td>
+					<td>@item.DealershipName</td>
+					<td>@item.Web</td>
+					<td><a class="btn btn-dark" asp-area="Admin" asp-controller="Dealership" asp-action="Edit" asp-route-id="@item.DealershipId">Güncelle</a></td>
+					<td><a class="btn btn-danger" asp-area="Admin" asp-controller="Dealership" asp-action="Delete" asp-route-id="@item.DealershipId">Sil</a></td>
+				</tr>
+			}
+
+		</tbody>
+	</table>
+</div>

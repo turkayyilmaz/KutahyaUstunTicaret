@@ -1,0 +1,29 @@
+﻿@model List<Gallery>
+@{
+	ViewData["Title"] = "Gallery";
+	string name;
+	Layout = "~/Views/UILayout/UILayout.cshtml";
+}
+
+<div class="mt-4">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            var modalId = "imageModal" + @item.ImageName.GetHashCode(); // Benzersiz modal id'si oluştur
+            <div class="col-md-4 mb-4">
+                <img src="~/Img/@item.ImageName" class="img-fluid img-thumbnail" data-toggle="modal" data-target="#@modalId" alt="Image @item.ImageName" style="height: 200px;">
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="@modalId" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl" style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+                    <div class="modal-content bg-transparent border-0">
+                        <div class="modal-body text-center">
+                            <img src="~/Img/@item.ImageName" width="1000px" class="img-fluid" alt="Modal Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

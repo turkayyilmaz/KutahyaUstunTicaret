@@ -1,0 +1,14 @@
+﻿<h3 class="aside-title">Kategori</h3>
+<div style="margin-bottom: 10px;">
+	<!-- İstenilen boşluğu burada ayarlayabilirsiniz -->
+	<a href="/home/product" class="text-danger" style="border: 0; border-bottom: 1px solid gray;">Temizle</a>
+</div>@foreach (var item in ViewBag.Categories)
+{
+	<div class="checkbox-filter">
+		<div class="input-checkbox">
+			<a asp-controller="Home" asp-action="Product" asp-route-category="@item.CategoryName" class="@(ViewBag.SelectedCategory == item.CategoryName ? "text-danger" : "text-dark")">
+				@item.CategoryName
+			</a>
+		</div>
+	</div>
+}

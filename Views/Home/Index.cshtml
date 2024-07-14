@@ -1,0 +1,16 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+	Layout = "~/Views/UILayout/UILayout.cshtml";
+}
+
+<div class="text-center">
+	<div id="hero-section" class="" style="background:repeating-linear-gradient(180deg, white, rgba(21, 22, 29, 0.15), white); background-position: center; background-repeat: no-repeat;">
+		<div class="container" style="padding: 50px;">
+			<div class="row g-1" style="padding: 10px;">
+				<span class="color-red" style="font-weight:700;">Üstün</span> <span class="color-dark" style="font-weight:100;">Ticaret</span><br /> <span class="color-red small-text" style="font-weight:100;">İnşaat</span><span class="color-dark small-text" style="font-weight:100;">  - Hırdavat - </span><span class="color-red small-text" style="font-weight:100;"> Boya</span>
+			</div>
+		</div>
+	</div>
+	@await Component.InvokeAsync("_DealerUILayoutComponentPartial")
+	@await Component.InvokeAsync("_ProductUILayoutComponentPartial")
+</div>

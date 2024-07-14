@@ -1,0 +1,203 @@
+﻿@model ProductListViewModel
+@{
+	ViewData["Title"] = "Product";
+	Layout = "~/Views/UILayout/UILayout.cshtml";
+}
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<!-- ASIDE -->
+			<div id="aside" class="col-md-2">
+				<!-- aside Widget -->
+				<div class="aside">
+					@await Component.InvokeAsync("_SideCategoryComponentPartial")
+				</div>
+
+				<div class="aside">
+					@await Component.InvokeAsync("_SideBrandComponentPartial")
+				</div>
+				@* <div class="aside">
+				<h3 class="aside-title">Top selling</h3>
+				<div class="product-widget">
+				<div class="product-img">
+				<img src="./img/product01.png" alt="">
+				</div>
+				<div class="product-body">
+				<p class="product-category">Category</p>
+				<h3 class="product-name"><a href="#">product name goes here</a></h3>
+				<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+				</div>
+				</div>
+
+				<div class="product-widget">
+				<div class="product-img">
+				<img src="./img/product02.png" alt="">
+				</div>
+				<div class="product-body">
+				<p class="product-category">Category</p>
+				<h3 class="product-name"><a href="#">product name goes here</a></h3>
+				<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+				</div>
+				</div>
+
+				<div class="product-widget">
+				<div class="product-img">
+				<img src="./img/product03.png" alt="">
+				</div>
+				<div class="product-body">
+				<p class="product-category">Category</p>
+				<h3 class="product-name"><a href="#">product name goes here</a></h3>
+				<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+				</div>
+				</div>
+				</div> *@
+			</div>
+			<!-- /ASIDE -->
+			<!-- STORE -->
+			<div id="store" class="col-md-10">
+				<!-- store top filter -->
+				@* <div class="store-filter clearfix">
+				<div class="store-sort">
+				<label>
+				Sort By:
+				<select class="input-select">
+				<option value="0">Popular</option>
+				<option value="1">Position</option>
+				</select>
+				</label>
+
+				<label>
+				Show:
+				<select class="input-select">
+				<option value="0">20</option>
+				<option value="1">50</option>
+				</select>
+				</label>
+				</div>
+				<ul class="store-grid">
+				<li class="active"><i class="fa fa-th"></i></li>
+				<li><a href="#"><i class="fa fa-th-list"></i></a></li>
+				</ul>
+				</div> *@
+				<!-- /store top filter -->
+				<!-- store products -->
+				<div class="row">
+					@foreach (var p in Model.Products)
+					{
+						<div class="col-md-3 col-xs-6">
+							<div class="product">
+								<div class="product-img" style=" width: 100%;
+    height: 200px; /* İstediğiniz yükseklik */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;">
+									<img src="~/Img/Products/@p.image" alt="" style="width: 80%;
+    height: 80%;
+    object-fit: contain;">
+
+								</div>
+								<div class="product-body">
+									<p class="product-category">@p.brand</p>
+									<h3 class="product-name"><a href="#">@p.productName</a></h3>
+									<p style="font-size:13px; display: flex; justify-content: space-between;">
+										<span>
+											Stokta
+											@if (p.stock)
+											{
+												<span>VAR</span>
+											}
+											else
+											{
+												<span style="color: red;">YOK</span>
+											}
+										</span>
+										<span>
+											Birim: @if (string.IsNullOrEmpty(p.unit))
+											{
+												<span></span>
+											}
+											else
+											{
+												<span>@p.unit.ToUpper()</span>
+											}
+										</span>
+									</p>
+								</div>
+								@* <div class="add-to-cart">
+							<button class="add-to-cart-btn">Ürünü İncele</button>
+							</div> *@
+							</div>
+						</div>
+					}
+
+					<div class="clearfix visible-sm visible-xs"></div>
+
+
+
+
+				</div>
+				<!-- /store products -->
+				<!-- store bottom filter -->
+				@if (Model.Products.Count() == 0)
+				{
+					<div class="alert alert-light" role="alert">
+						Herhangi bir ürün bulunamadı.
+					</div>
+				}
+				<div class="store-filter clearfix">
+					@if (Model.PageInfo.TotalPages > 1)
+					{
+						<ul class="store-pagination">
+							@if (Model.PageInfo.CurrentPage > 1)
+							{
+								<li>
+									<a asp-controller="Home"
+									   asp-action="Product"
+									   asp-route-page="@(Model.PageInfo.CurrentPage - 1)"
+									   asp-route-search="@(ViewData["Search"])"
+									   asp-route-category="@(ViewData["Category"])"
+									   asp-route-brand="@(ViewData["Brand"])">
+										<i class="fa fa-angle-left"></i>
+									</a>
+								</li>
+							}
+							@for (var i = 1; i <= Model.PageInfo.TotalPages; i++)
+							{
+								<li class="page-item">
+									<a asp-controller="Home"
+									   asp-action="Product"
+									   asp-route-page="@i"
+									   asp-route-search="@(ViewData["Search"])" 
+									   asp-route-category="@(ViewData["Category"])"
+									   asp-route-brand="@(ViewData["Brand"])">
+										@i
+									</a>
+								</li>
+							}
+							@if (Model.PageInfo.CurrentPage < Model.PageInfo.TotalPages)
+							{
+								<li>
+									<a asp-controller="Home"
+									   asp-action="Product"
+									   asp-route-page="@(Model.PageInfo.CurrentPage + 1)"
+									   asp-route-search="@(ViewData["Search"])"
+									   asp-route-category="@(ViewData["Category"])"
+									   asp-route-brand="@(ViewData["Brand"])">
+										<i class="fa fa-angle-right"></i>
+									</a>
+								</li>
+							}
+						</ul>
+					}
+				</div>
+				<!-- /store bottom filter -->
+			</div>
+			<!-- /STORE -->
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>

@@ -1,0 +1,11 @@
+﻿<h3 class="aside-title">Marka</h3>
+@foreach (var item in ViewBag.Brands)
+{
+	<div class="checkbox-filter">
+		<div class="input-checkbox">
+			<a asp-controller="Home" asp-action="Product" asp-route-brand="@item.BrandName" class="@(ViewBag.SelectedBrand == item.BrandName ? "text-danger" : "text-dark")">
+				@item.BrandName
+			</a>
+		</div>
+	</div>
+}

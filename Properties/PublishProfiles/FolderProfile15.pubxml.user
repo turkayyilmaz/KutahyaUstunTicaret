@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\ASUS\Desktop\KutahyaUstunTicaretPublish</_PublishTargetUrl>
+    <History>True|2024-07-12T13:03:48.9535646Z;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="Default">
+      <Value>Server=77.245.159.23\MSSQLSERVER2019%3bDatabase=KutahyaUstunTicaretDb%3bUser Id=melihustun%3bPassword=mh637yF&amp;2%3bEncrypt=True%3bTrustServerCertificate=True%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

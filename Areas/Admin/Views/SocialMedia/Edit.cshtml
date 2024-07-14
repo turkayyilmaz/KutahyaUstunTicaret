@@ -1,0 +1,24 @@
+﻿@model SocialMedia
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-5">
+	<h2>Sosyal Medya Bilgileri</h2>
+	<hr />
+	<form asp-area="Admin" asp-controller="SocialMedia" asp-action="Edit" method="post">
+		<input type="hidden" asp-for="SocialMediaId" />
+		<div class="form-group mb-3">
+			<label class="form-label" asp-for="Link">Hesap Linki</label>
+			<input type="text" class="form-control" asp-for="Link" placeholder="Sosyal medya linki...">
+		</div>
+		<div class="form-group mb-3">
+			<label class="form-label" asp-for="IconName">İkon Adı</label>
+			<input type="text" class="form-control" asp-for="IconName" placeholder="Sosyal medya ikon adı...">
+		</div>
+		<div class="form-group mb-3">
+			<button type="submit" class="btn btn-dark">Güncelle</button>
+		</div>
+	</form>
+
+</div>

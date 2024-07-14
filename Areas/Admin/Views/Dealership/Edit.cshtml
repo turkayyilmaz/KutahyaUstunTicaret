@@ -1,0 +1,35 @@
+﻿@model Dealership
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+	<h2>Ortak Firma Güncelle</h2>
+	<hr />
+	<form asp-area="Admin" asp-controller="Dealership" asp-action="Edit" method="post" enctype="multipart/form-data">
+		<div asp-validation-summary="All"></div>
+		<input type="hidden" asp-for="DealershipId" />
+		<div class="form-group">
+			<label asp-for="DealershipName" class="control-label">Ortak Firma Adı</label>
+			<input type="text" asp-for="DealershipName" class="form-control" />
+		</div>
+		<div class="form-group">
+			<label asp-for="Web" class="control-label">Firma Web Sitesi</label>
+			<input type="text" asp-for="Web" class="form-control" />
+		</div>
+		<div class="form-group mb-3">
+			<label asp-for="Image" class="form-label">Firma Logo*</label><br />
+			<input type="file" name="imageFile" id="imageFile" class="form-control">
+			<span asp-validation-for="Image" class="text-danger"></span>
+		</div>
+		<div class="form-group mb-3">
+			<img src="~/Img/Dealer/@Model.Image" width="100px" />
+			<input type="hidden" asp-for="Image" />
+		</div>
+		<div class="form-group mb-3">
+			<button type="submit" class="btn btn-primary">Oluştur</button>
+		</div>
+	</form>
+</div>
+

@@ -1,0 +1,103 @@
+﻿@model Product
+@{
+	ViewData["Title"] = "Create";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+	<h2>Ürün Ekleme</h2>
+	<hr />
+	<form asp-area="Admin" asp-controller="Product" asp-action="Create" method="post" enctype="multipart/form-data">
+		<div asp-validation-summary="All"></div>
+		<div class="form-group">
+			<label asp-for="ProductName" class="control-label">Ürün İsmi*</label>
+			<input type="text" asp-for="ProductName" class="form-control" />
+			<span asp-validation-for="ProductName" class="text-danger"></span>
+		</div>
+
+		<div class="form-group">
+			<label asp-for="Description" class="control-label">Ürün Açıklaması</label>
+			<input type="text" asp-for="Description" class="form-control" />
+			<span asp-validation-for="Description" class="text-danger"></span>
+		</div>
+
+		<div class="form-group mb-3">
+			<label asp-for="Image" class="form-label">Ürün Resmi*</label><br />
+			<input type="file" name="imageFile" id="imageFile" class="form-control">
+			<span asp-validation-for="Image" class="text-danger"></span>
+		</div>
+
+		@* 	<div class="form-group">
+		<label asp-for="Price" class="control-label">Ürün Fiyatı*</label>
+		<input type="text" asp-for="Price" class="form-control" />
+		<span asp-validation-for="Price" class="text-danger"></span>
+		</div>
+		*@
+		<div class="form-group">
+			<label asp-for="Unit" class="control-label">Ürün Birimi</label>
+			<input type="text" asp-for="Unit" class="form-control" />
+			<span asp-validation-for="Unit" class="text-danger"></span>
+		</div>
+
+		@* 		<div class="form-group">
+		<label asp-for="Kdv" class="control-label">KDV*</label>
+		<input type="text" asp-for="Kdv" class="form-control" />
+		<span asp-validation-for="Kdv" class="text-danger"></span>
+		</div> *@
+
+		<div class="form-group">
+			<label asp-for="Stock" class="control-label">Stokta var mı?</label>
+			<input asp-for="Stock" type="checkbox" />
+			<span asp-validation-for="Stock" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="CategoryId" class="control-label">Ürün Kategorisi</label>
+			<select asp-for="CategoryId" class="form-control"
+					asp-items='@(new SelectList(@ViewBag.Categories, "CategoryId", "CategoryName"))' id="categorySelect">
+				<option value="0">Kategori Seç</option>
+			</select>
+			<span asp-validation-for="CategoryId" class="text-danger"></span>
+			<div class="form-group">
+				<a asp-area="Admin" asp-controller="Category" asp-action="Create" class="btn-sm btn-secondary mb-3">Yeni Kategori Ekle</a>
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="BrandId" class="control-label">Ürün Markası</label>
+			<select asp-for="BrandId" class="form-control"
+					asp-items='@(new SelectList(@ViewBag.Brands, "BrandId", "BrandName"))' id="brandSelect">
+				<option value="0">Marka Seç</option>
+			</select>
+			<span asp-validation-for="BrandId" class="text-danger"></span>
+			<div class="form-group">
+				<a asp-area="Admin" asp-controller="Brand" asp-action="Create" class="btn-sm btn-secondary mb-3">Yeni Marka Ekle</a>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary" id="submitBtn" disabled>Oluştur</button>
+	</form>
+</div>
+@section Scripts {
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			const categorySelect = document.getElementById('categorySelect');
+			const brandSelect = document.getElementById('brandSelect');
+			const submitBtn = document.getElementById('submitBtn');
+
+			function toggleSubmitButton() {
+				console.log("Current category value:", categorySelect.value);  // Değeri kontrol etmek için ekledim
+				console.log("Current brand value:", brandSelect.value);  // Değeri kontrol etmek için ekledim
+				if (categorySelect.value === "0" || categorySelect.value === "" || brandSelect.value === "0" || brandSelect.value === "") {
+					submitBtn.disabled = true;
+				} else {
+					submitBtn.disabled = false;
+				}
+			}
+
+			// Sayfa yüklendiğinde buton durumunu kontrol et
+			toggleSubmitButton();
+
+			// SelectList değiştiğinde buton durumunu kontrol et
+			categorySelect.addEventListener('change', toggleSubmitButton);
+			brandSelect.addEventListener('change', toggleSubmitButton);
+		});
+	</script>
+}
